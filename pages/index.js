@@ -13,8 +13,8 @@ export default function IndexPage(props) {
 
 export async function getServerSideProps(context) {
   const { req } = context;
-  const host = getHost(req);
-  const user = await fetch(host + "/api/user").then((res) => res.json());
+  const url = getHost(req) + "/api/user";
+  const user = await fetch(url).then((res) => res.json());
   return {
     props: {
       user
