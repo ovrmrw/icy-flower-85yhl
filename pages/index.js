@@ -13,7 +13,7 @@ export default function IndexPage(props) {
 
 export async function getServerSideProps(context) {
   const { req } = context;
-  const url = getHost(req) + "/api/user";
+  const url = getSelfHost(req) + "/api/user";
   const user = await fetch(url).then((res) => res.json());
   return {
     props: {
@@ -22,7 +22,7 @@ export async function getServerSideProps(context) {
   };
 }
 
-function getHost(req) {
+function getSelfHost(req) {
   const protocol = process.env.NODE_ENV === "production" ? "https:" : "http:";
   const host = protocol + "//" + req.headers.host;
   return host;
